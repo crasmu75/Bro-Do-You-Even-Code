@@ -2,6 +2,7 @@ var snake = {
 
     currentDirection: 'up',
     pendingGrowth: false,
+    eatenFoods: 0,
     
     cells: [
         {
@@ -66,6 +67,7 @@ function snakeMove(fillSnake)
     if (newHeadCell.x === game.currentFoodPosition.x && newHeadCell.y === game.currentFoodPosition.y) {
         snake.pendingGrowth = true;
         changeFoodPosition();
+        snake.eatenFoods++;
     }
 
     if(!snake.pendingGrowth)
@@ -78,13 +80,4 @@ function snakeMove(fillSnake)
     fillSnake();
     
     return true;
-}
-
-/*
- * pendingGrowth is set to true, so the next time snakeMove is called, 
- * the snake will grow.
- */
-function snakeEat()
-{
-    snake.pendingGrowth = true;
 }

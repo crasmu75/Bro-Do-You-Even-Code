@@ -57,7 +57,7 @@ function startGame(fillSnake)
     game.snakeTimer = setInterval(function() {
         if (!snakeMove(fillSnake))
             gameOver();
-    }, 50);
+    }, 80);
 }
 
 /*
