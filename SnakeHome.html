@@ -1,0 +1,103 @@
+<!--
+    Author: Daniel Cushing
+    Version: 1.0 
+    Date: 1/29/2015
+    Info: Snake Home Page
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Snake </title>
+        <link rel="stylesheet" type="text/css" href="CSS/SnakeHomeStyle.css">
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:600' rel='stylesheet' type='text/css'>
+            
+<!--    Link Jquery-->
+<!--    
+        Link Home Screen View Controller (javascript)
+        Link High Scores View Controller (javascript)
+-->
+        
+    <!-- Do the following in the view controller -->
+    <script type="text/javascript"> 
+        
+    function aboutClicked()
+    {
+        location.href = "#aboutDiv";
+    }
+        
+    function highScoresClicked()
+    {
+        location.href = "#highScoresDiv";
+    }
+        
+    function instructionsClicked()
+    {
+        location.href = "#instructionsDiv";
+    }
+        
+    function newGameClicked()
+    {
+        alert("Go to game view")
+        // Goto new page
+        // location.href = "page_location";
+    }
+        
+    </script>
+    
+    </head>
+    
+    <body>
+        
+        <div class="homeScreen">
+            <!-- Snake Home Screen Image Div -->
+            <div class="homeScreenImage"> 
+
+                <!-- Home Screen Buttons Div -->
+                <div class="homeScreenButtons"> 
+                     <button id="aboutButton" type="button" onclick="aboutClicked()"></button> 
+                     <button id="highScoresButton" type="button" onclick="highScoresClicked()"></button> 
+                     <button id="instructionsButton" type="button" onclick="instructionsClicked()"></button> 
+                     <button id="newGameButton" type="button" onclick="newGameClicked()"></button> 
+                </div>
+
+                <img src="Images/SnakeHomeDefualt.png" alt="Home Screen Image">
+            </div>
+        </div>
+            
+        <div id="instructionsDiv" class="instructions"> 
+            <h1>How To Play</h1>
+            
+            <p> 
+                Your snake is constantly in motion. Don't run into a wall or your tail or you'll die!
+            </p>
+            <br/>
+            <p> 
+                Move your snake in different directions, up, down, left, and right, using your keys, to avoid                       death.   
+            </p>
+            
+            
+        </div>
+        
+        <div id="highScoresDiv" class="highScores"> 
+            <h1>High Scores</h1>
+        </div>
+        
+        <div id="aboutDiv" class="about"> 
+            <h1>About</h1>
+            <p> 
+                Authors <br/><br/>
+                Camille Rasmussen, Victor Johnson, Dustin Reitstetter, Daniel Cushing
+            </p>
+            
+            <p> 
+                Additional Info <br/><br/>
+                We are enthusiastic University of Utah students working on our final project for
+                Web Software Architecture. 
+                <br/> We chose snake to demonstrate our familiarity with 
+                html5, html5 canvas, css, javascript, and pixi. 
+            </p>
+        </div>
+        
+    </body>
+</html>
