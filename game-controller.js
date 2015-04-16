@@ -1,16 +1,20 @@
 $(document).keydown(function(e) {
     switch (e.which) {
         case 37: //left
-            snake.currentDirection = 'left';
+            if (snake.currentDirection !== 'right')
+                snake.currentDirection = 'left';
             break;
         case 38: //up
-            snake.currentDirection = 'up';
+            if (snake.currentDirection !== 'down')
+                snake.currentDirection = 'up';
             break;
         case 39: //right
-            snake.currentDirection = 'right';
+            if (snake.currentDirection !== 'left')
+                snake.currentDirection = 'right';
             break;
         case 40: //down
-            snake.currentDirection = 'down';
+            if (snake.currentDirection !== 'up')
+                snake.currentDirection = 'down';
             break;
     }
 });
