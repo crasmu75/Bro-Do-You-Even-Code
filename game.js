@@ -1,13 +1,11 @@
 var game = {
-    currentFoodPosition: {x:5, y:5},
+    currentFoodPosition: { x: 5, y: 5 },
     
     // How many moves per second we want the snake to do
     movesPerSec: 2,
     snakeTimer: undefined,
     currentScore: 0
 }
-
-startGame();
 
 /*
  * Resets all game and snake properties
@@ -24,7 +22,7 @@ function gameOver()
     game.currentScore = 0;
     
     // reset snake properties
-    snake.currentDirection = "up";
+    snake.currentDirection = 'up';
     snake.pendingGrowth = false;
     snake.cells = [
     {
@@ -53,13 +51,13 @@ function gameOver()
 /*
  * Begins the movement of the snake
  */
-function startGame()
+function startGame(fillSnake)
 {
     // Start moving the snake every movesPerSec seconds
     game.snakeTimer = setInterval(function() {
-        if (!snakeMove())
+        if (!snakeMove(fillSnake))
             gameOver();
-    }, 500);
+    }, 50);
 }
 
 /*
@@ -72,7 +70,7 @@ function changeFoodPosition()
     var randomPos;
     
     function generateRandomPos() {
-        randomPos = {x: Math.floor(random() * (26)), y: Math.floor(random() * (26))};
+        randomPos = {x: Math.floor(Math.random() * (25)), y: Math.floor(Math.random() * (25))};
     }
     
     generateRandomPos();
@@ -83,7 +81,7 @@ function changeFoodPosition()
     function posInSnake(el) {
         return el.x === randomPos.x && el.y === randomPos.y;
     }
-    
+
     while (snake.cells.some(posInSnake)) {
         generateRandomPos();
     }
