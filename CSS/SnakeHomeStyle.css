@@ -19,16 +19,17 @@ body
     margin-right: auto; 
 }
 
+/*Buttons Div*/
 .homeScreenButtons
 {
     position: absolute;
     top: 55%; 
     height: 40%; 
     width: 30%; 
-/*    border: 3px solid black;  */
     margin-left: 30%; 
 }
 
+/*Buttons Style*/
 .homeScreenButtons button
 {
     display: block; 
@@ -47,58 +48,49 @@ body
     background-color: #fff; 
 }
 
-.instructions
+.instructions, .highScores, .about
 {
     overflow:auto;
     height:100vh;
-    width: 100%; 
-    background-color: #f8f8fa;
+    width: 100%;  
+    padding-left: 25px;
+    padding-right: 25px; 
+    font-family: 'Titillium Web', sans-serif;  
 }
 
-.instructions h1
+.instructions
 {
-    width: 100%; 
-    text-align: center; 
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 50px; 
+    background-color: #f8f8fa;
 }
 
 .highScores
 {
-    overflow:auto;
-    height:100vh;
-    width: 100%; 
     background-color: #e5e6eb;
 }
 
-.highScores h1
+.highScores table
 {
-    width: 100%; 
-    text-align: center;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 50px; 
+    font-size: 18px; 
 }
 
 .about
-{ 
-    overflow:auto;
-    height:100vh;
-    width: 100%; 
+{  
     background-color: #c0c2ce;
-    font-family: 'Titillium Web', sans-serif;
 }
 
-.about h1
+.about h1, .highScores h1, .instructions h1
 {
     width: 100%; 
     text-align: center;
     font-size: 50px; 
+    color: #000;
 }
 
-.about p
+.about p, .highScores p, .instructions p
 {
-    padding-left: 25px; 
     font-size: 25px; 
+    color: #000;
 }
+
 
 
