@@ -5,11 +5,57 @@ td {
 
 table {
     border-spacing: 1px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 40px;
+   	/*margin-top: 40px;*/
 }
 
 body {
     text-align: center;
+    margin: 0 0 0 0; 
+    background-image: url("../Images/SnakeGameView.gif");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 100% 100%;
+    padding-top: 35px;
+    overflow-y: hidden;
+    font-family: 'Titillium Web', sans-serif;
 }
+
+.gameBorder
+{
+	border: 5px solid #000;
+	width: 550px;
+	float: right;
+}
+
+.containerLeft
+{
+	float: left;
+	height: 100vh;
+	width: 70%;
+}
+
+.containerRight
+{
+	height: 100vh;
+	float: right;
+	width: 30%;
+}
+
+.newGameBtn {
+	position: absolute; 
+	bottom: 4px;
+	left: 41%;
+ 	color: #000;
+ 	font-size: 25px; 
+	background: #00dd00;
+	padding: 3px 30px 3px 30px;
+	border: solid #00aa00 2px;
+	text-decoration: none;
+}
+
+.newGameBtn:hover {
+	background: #00bb00;
+	text-decoration: none;
+}
+
+
