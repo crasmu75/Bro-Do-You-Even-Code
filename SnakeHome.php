@@ -5,6 +5,36 @@
     Info: Snake Home Page
 -->
 
+<?php
+
+require_once 'db.php';
+
+try
+{
+    $DBH = openDBConnection();
+
+    $return_table = "";
+    
+    $query = "SELECT * FROM snake.scores order by scores.score desc limit 10;";
+    $statement = $DBH->prepare( $query );
+    $statement->execute(  );
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    
+    foreach($result as $row)
+    {
+        $return_table .= "<tr>"
+            . "<td>" . $row['name'] . "</td>"
+            . "<td>" . $row['score'] . "</td>"
+            . "</tr>";
+    }
+}
+catch(PDOException $e)
+{
+    $e = "ERROR";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -121,18 +151,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Fry</td>
-                    <td>100</td>
-                  </tr>
-                  <tr>
-                    <td>Leela</td>
-                    <td>25</td>
-                  </tr>
-                  <tr>
-                    <td>Bender</td>
-                    <td>101</td>
-                  </tr>
+                   <?php echo $return_table ?>
                 </tbody>
             </table>
 
@@ -150,7 +169,7 @@
                 Additional Info <br/>
                 We are enthusiastic University of Utah students working on our final project for
                 Web Software Architecture. We chose Snake to demonstrate our familiarity with 
-                html5, javascript, and css. 
+                html5, javascript, php, and css. 
             </p>
         </div>
     </body>

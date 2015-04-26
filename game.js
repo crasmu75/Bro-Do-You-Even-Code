@@ -1,6 +1,6 @@
 var game = {
     currentFoodPosition: { x: 5, y: 5 },
-    
+
     // How many moves per second we want the snake to do
     movesPerSec: 2,
     snakeTimer: undefined,
@@ -12,6 +12,8 @@ var game = {
  */
 function gameOver()
 {
+    dbscore("Jim", snake.eatenFoods);
+    
     // stop the snake moving
     clearInterval(game.snakeTimer);
     
@@ -87,4 +89,29 @@ function changeFoodPosition()
     }
     
     game.currentFoodPosition = randomPos;
+}
+
+function dbscore(name, score)
+{
+    var d1;
+    var d2;
+    d1 = "&name=" + name;
+    d2 = "&score=" + score;
+    
+    $.ajax(
+        {
+            type:'POST',
+            url: "score.php",
+            data: d1+d2,
+            dataType: 'html',
+            
+            success: function(response)
+            {
+                if(response == "1")
+                {
+                    alert("New high score, your name and score will be displayed in the highscore table on the home page.");
+                }
+            }
+        });
+    return false;
 }

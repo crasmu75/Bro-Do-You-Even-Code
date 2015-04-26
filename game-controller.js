@@ -48,7 +48,6 @@ $(document).ready(function() {
 
         $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).css('background-color', 'red');
         $('#score').html('Score: ' + snake.eatenFoods);
-
     });
 });
 
