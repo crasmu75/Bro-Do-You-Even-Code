@@ -1,9 +1,8 @@
 var snake = {
-
     currentDirection: 'up',
     pendingGrowth: false,
+    pendingDirections: [],
     eatenFoods: 0,
-    
     cells: [
         {
             x: 5,
@@ -28,6 +27,20 @@ var snake = {
     ]
 };
 
+function updateDirection() {
+    if (snake.pendingDirections.length > 0) {
+        var newDirection = snake.pendingDirections.splice(0, 1)[0];
+        if (!((newDirection === 'up' && snake.currentDirection === 'down') ||
+                    (newDirection === 'down' && snake.currentDirection === 'up') ||
+                    (newDirection === 'right' && snake.currentDirection === 'left') ||
+                    (newDirection === 'left' && snake.currentDirection === 'right'))) {
+
+            snake.currentDirection = newDirection;
+
+        }
+    }
+}
+
 /*
  * Moves the snake by one cell. If the snake has eaten a food, pendingGrowth will be true.
  * If there is no pendingGrowth, then the tail cell will pop off.
@@ -35,8 +48,9 @@ var snake = {
 function snakeMove(fillSnake)
 {
     var newHeadCell;
-    
-    // console.log('current head:', snake.cells[0]);
+
+    updateDirection();
+
     switch(snake.currentDirection) {
         case 'up':
             newHeadCell = {x: snake.cells[0].x, y: snake.cells[0].y - 1};

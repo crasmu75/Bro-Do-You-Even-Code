@@ -1,21 +1,34 @@
+function moveSnake() {
+    resetSquares();
+    snake.cells.forEach(function(el) {
+        $('#' + el.x + '-' + el.y).css('background-color', 'green');
+    });
+
+    $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).css('background-color', 'red');
+
+}
+
+function resetSquares() {
+    $('.cell').css('background-color', 'white');
+    $('#score').html('Score: ' + snake.eatenFoods);
+}
+
 $(document).keydown(function(e) {
     switch (e.which) {
         case 37: //left
-            if (snake.currentDirection !== 'right')
-                snake.currentDirection = 'left';
+            snake.pendingDirections.push('left');
             break;
         case 38: //up
-            if (snake.currentDirection !== 'down')
-                snake.currentDirection = 'up';
+                snake.pendingDirections.push('up');
             break;
         case 39: //right
-            if (snake.currentDirection !== 'left')
-                snake.currentDirection = 'right';
+                snake.pendingDirections.push('right');
             break;
         case 40: //down
-            if (snake.currentDirection !== 'up')
-                snake.currentDirection = 'down';
+                snake.pendingDirections.push('down');
             break;
+        case 13: //enter
+            location.reload();
     }
 });
 
@@ -33,22 +46,12 @@ $(document).ready(function() {
         $('#gameboard').append(rowhtml);
     }
 
-    function resetSquares() {
-        $('.cell').css('background-color', 'white');
-    }
-
     changeFoodPosition();
+    resetSquares();
 
-    startGame(function() {
-        resetSquares();
-        snake.cells.forEach(function(el) {
-            // console.log('setting:', el.x + '-' + el.y);
-            $('#' + el.x + '-' + el.y).css('background-color', 'green');
-        });
+    startGame(moveSnake);
 
-        $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).css('background-color', 'red');
-        $('#score').html('Score: ' + snake.eatenFoods);
-
+    $('#new-game-btn').click(function() {
+        startGame(moveSnake);
     });
 });
-
