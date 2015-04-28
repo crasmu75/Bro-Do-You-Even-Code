@@ -15,18 +15,23 @@ function resetSquares() {
 $(document).keydown(function(e) {
     switch (e.which) {
         case 37: //left
+            e.preventDefault();
             snake.pendingDirections.push('left');
             break;
         case 38: //up
+            e.preventDefault();
                 snake.pendingDirections.push('up');
             break;
         case 39: //right
+            e.preventDefault();
                 snake.pendingDirections.push('right');
             break;
         case 40: //down
+            e.preventDefault();
                 snake.pendingDirections.push('down');
             break;
         case 13: //enter
+            e.preventDefault();
             startGame(drawBoard, $('#player-name').val());
     }
 });
