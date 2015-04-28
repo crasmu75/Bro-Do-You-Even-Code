@@ -1,16 +1,15 @@
-function moveSnake() {
+function drawBoard() {
     resetSquares();
     snake.cells.forEach(function(el) {
         $('#' + el.x + '-' + el.y).css('background-color', 'green');
     });
 
     $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).css('background-color', 'red');
-
+    $('#score').html('Score: ' + (snake.eatenFoods || 0));
 }
 
 function resetSquares() {
     $('.cell').css('background-color', 'white');
-    $('#score').html('Score: ' + snake.eatenFoods);
 }
 
 $(document).keydown(function(e) {
@@ -28,7 +27,7 @@ $(document).keydown(function(e) {
                 snake.pendingDirections.push('down');
             break;
         case 13: //enter
-            location.reload();
+            startGame(drawBoard, $('#player-name').val());
     }
 });
 
@@ -46,12 +45,7 @@ $(document).ready(function() {
         $('#gameboard').append(rowhtml);
     }
 
-    changeFoodPosition();
-    resetSquares();
-
-    startGame(moveSnake);
-
     $('#new-game-btn').click(function() {
-        startGame(moveSnake);
+        startGame(drawBoard, $('#player-name').val());
     });
 });

@@ -1,8 +1,7 @@
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-        <script src="snake.js"></script>
-        <script src="game.js"></script>
+        <script src="game-model.js"></script>
         <script src="game-controller.js"></script>
         <link rel="stylesheet" type="text/css" href="CSS/main.css">
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:600' rel='stylesheet' type='text/css'>
@@ -18,9 +17,9 @@
         </div>
         
         <div class="containerRight">
-            <h1 id="playerName">Temporary Player Name </h1>
+            <input type="text" id="player-name" placeholder="Player Name">
             <h1 id="score"></h1>
-            <a id="new-game-btn" class="newGameBtn" href="">Start Game</a>
+            <a id="new-game-btn" class="newGameBtn" href="#">Start Game</a>
         </div>
     </body>
 </html>

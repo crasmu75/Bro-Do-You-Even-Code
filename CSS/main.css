@@ -20,6 +20,11 @@ body {
     font-family: 'Titillium Web', sans-serif;
 }
 
+input[type="text"] {
+    padding: 10px;
+    font-size: 25px;
+}
+
 .gameBorder
 {
 	border: 5px solid #000;
