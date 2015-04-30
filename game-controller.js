@@ -3,6 +3,10 @@ function drawBoard() {
     snake.cells.forEach(function(el) {
         $('#' + el.x + '-' + el.y).css('background-color', 'green');
     });
+    console.log(game.wallCells);
+    game.wallCells.forEach(function(el) {
+        $('#' + el.x + '-' + el.y).css('background-color', 'black');
+    });
 
     $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).css('background-color', 'red');
     //$('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).html("<img src='Images/orange.png' style='width:12px;height:12px'>");

@@ -5,7 +5,7 @@ var snake;
 
 function startGame(drawBoard, playerName, difficulty) {
     resetGame();
-    
+    buildWalls(difficulty);
     $('#start-button').blur();
     game.playerName = playerName;
     game.timer = setInterval(function() {
@@ -30,15 +30,16 @@ function generateFood() {
 
     generatePosition();
 
-    while (cellInSnake(foodPosition)) {
+    while (cellInSnake(foodPosition) || cellInWall(foodPosition)) {
         generatePosition();
+    
     }
 
     game.currentFoodPosition = foodPosition;
 }
 
 function buildWalls(diff) {
-    switch(difficulty)
+    switch(diff)
     {
         case("easy"):
             game.wallCells = [];
@@ -62,7 +63,6 @@ function buildWalls(diff) {
             { x: 18, y: 4 },
             { x: 17, y: 4 },
             { x: 16, y: 4 },
-            { x: 15, y: 4 },
             { x: 20, y: 5 },
             { x: 20, y: 6 },
             { x: 20, y: 7 },
@@ -74,36 +74,62 @@ function buildWalls(diff) {
             { x: 4, y: 18 },
             { x: 4, y: 17 },
             { x: 4, y: 16 },
-            { x: 4, y: 15 },
             { x: 5, y: 20 },
             { x: 6, y: 20 },
             { x: 7, y: 20 },
             { x: 8, y: 20 },
             
             // bottom right corner
-            { x: 15, y: 20 },
             { x: 16, y: 20 },
             { x: 17, y: 20 },
             { x: 18, y: 20 },
             { x: 19, y: 20 },
             { x: 20, y: 20 },
-            { x: 20, y: 15 },
             { x: 20, y: 16 },
             { x: 20, y: 17 },
             { x: 20, y: 18 },
+            { x: 20, y: 19 },
             ];
             break;
         case("hard"):
             game.wallCells = [
-            { x: 7, y: 5 },
-            { x: 6, y: 5 },
+            { x: 4, y: 4 },
             { x: 5, y: 5 },
-            { x: 4, y: 5 },
-            { x: 3, y: 5 } ];
+            { x: 6, y: 6 },
+            { x: 7, y: 7 },
+            { x: 8, y: 8 },
+            { x: 9, y: 9 },
+            { x: 10, y: 10 },
+            { x: 11, y: 11 },
+            { x: 13, y: 13 },
+            { x: 14, y: 14 },
+            { x: 15, y: 15 },
+            { x: 16, y: 16 },
+            { x: 17, y: 17 },
+            { x: 18, y: 18 },
+            { x: 19, y: 19 },
+            { x: 20, y: 20 },
+                
+            { x: 4, y: 20 },
+            { x: 5, y: 19 },
+            { x: 6, y: 18 },
+            { x: 7, y: 17 },
+            { x: 8, y: 16 },
+            { x: 9, y: 15 },
+            { x: 10, y: 14 },
+            { x: 11, y: 13 },
+            { x: 13, y: 11 },
+            { x: 14, y: 10 },
+            { x: 15, y: 9 },
+            { x: 16, y: 8 },
+            { x: 17, y: 7 },
+            { x: 18, y: 6 },
+            { x: 19, y: 5 },
+            { x: 20, y: 4 }
+        ];
             break;
     }
     
-    ]
 }
 
 function resetGame() {
@@ -113,11 +139,11 @@ function resetGame() {
         pendingDirections: [],
         pendingGrowth: false,
         cells: [
-            { x: 7, y: 5 },
-            { x: 6, y: 5 },
-            { x: 5, y: 5 },
-            { x: 4, y: 5 },
-            { x: 3, y: 5 }
+            { x: 7, y: 12 },
+            { x: 6, y: 12 },
+            { x: 5, y: 12 },
+            { x: 4, y: 12 },
+            { x: 3, y: 12 }
         ]
     };
 
@@ -168,6 +194,12 @@ function cellInSnake(el) {
     });
 }
 
+function cellInWall(el) {
+    return game.wallCells.some(function(wallEl) {
+        return el.x === wallEl.x && el.y === wallEl.y;
+    });
+}
+
 function updateDirection() {
     if (snake.pendingDirections.length > 0) {
         var newDirection = snake.pendingDirections.splice(0, 1)[0];
@@ -204,7 +236,8 @@ function moveSnake(drawBoard) {
 
     if (newHead.x < 0 || newHead.x >= game.size ||
         newHead.y < 0 || newHead.y >= game.size ||
-        cellInSnake(newHead)) {
+        cellInSnake(newHead) ||
+        cellInWall(newHead)) {
         endGame();
         return;
     }
