@@ -3,6 +3,30 @@ var snake;
 
 // -------------------------------  GAME SPECIFIC -------------------------------
 
+function changeFood(index) {
+    
+    // Dan, you can change 'document' to what you need. Also the element ID you end up using.
+    var photo = document.getElementById('food');
+    
+    switch(index)
+        case 1:
+            photo.src = "Images/apple.jpg";
+            break;
+        case 2:
+            photo.src = "Images/orange.png";
+            break;
+        case 3:
+            photo.src = "Images/grapes.jpg";
+            break;
+        case 4:
+            photo.src = "Images/carrot.jpg";
+            break; 
+        case 5:
+            photo.src = "Images/watermelon.png";
+            break;
+}
+
+
 function startGame(drawBoard, playerName) {
     $('#start-button').blur();
     resetGame();
