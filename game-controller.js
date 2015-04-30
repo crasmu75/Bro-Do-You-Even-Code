@@ -3,7 +3,6 @@ function drawBoard() {
     snake.cells.forEach(function(el) {
         $('#' + el.x + '-' + el.y).css('background-color', 'green');
     });
-    console.log(game.wallCells);
     game.wallCells.forEach(function(el) {
         $('#' + el.x + '-' + el.y).css('background-color', 'black');
     });
@@ -37,7 +36,7 @@ $(document).keydown(function(e) {
             break;
         case 13: //enter
             e.preventDefault();
-            startGame(drawBoard, $('#player-name').val());
+            startGame(drawBoard, $('#player-name').val(), $('#difficultySelected').val());
     }
 });
 

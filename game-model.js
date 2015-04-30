@@ -6,6 +6,7 @@ var snake;
 function startGame(drawBoard, playerName, difficulty) {
     resetGame();
     buildWalls(difficulty);
+    generateFood();
     $('#start-button').blur();
     game.playerName = playerName;
     game.timer = setInterval(function() {
@@ -156,7 +157,6 @@ function resetGame() {
         wallCells: []
     };
 
-    generateFood();
 }
 
 function dbscore(name, score)
