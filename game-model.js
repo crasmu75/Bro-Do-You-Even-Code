@@ -3,9 +3,10 @@ var snake;
 
 // -------------------------------  GAME SPECIFIC -------------------------------
 
-function startGame(drawBoard, playerName) {
-    $('#start-button').blur();
+function startGame(drawBoard, playerName, difficulty) {
     resetGame();
+    
+    $('#start-button').blur();
     game.playerName = playerName;
     game.timer = setInterval(function() {
         moveSnake(drawBoard);
@@ -36,6 +37,75 @@ function generateFood() {
     game.currentFoodPosition = foodPosition;
 }
 
+function buildWalls(diff) {
+    switch(difficulty)
+    {
+        case("easy"):
+            game.wallCells = [];
+            break;
+        case("medium"):
+            game.wallCells = [
+            // top left corner
+            { x: 4, y: 4 },
+            { x: 5, y: 4 },
+            { x: 6, y: 4 },
+            { x: 7, y: 4 },
+            { x: 8, y: 4 },
+            { x: 4, y: 5 },
+            { x: 4, y: 6 },
+            { x: 4, y: 7 },
+            { x: 4, y: 8 },
+                
+            // top right corner
+            { x: 20, y: 4 },
+            { x: 19, y: 4 },
+            { x: 18, y: 4 },
+            { x: 17, y: 4 },
+            { x: 16, y: 4 },
+            { x: 15, y: 4 },
+            { x: 20, y: 5 },
+            { x: 20, y: 6 },
+            { x: 20, y: 7 },
+            { x: 20, y: 8 },
+                
+            // bottom left corner
+            { x: 4, y: 20 },
+            { x: 4, y: 19 },
+            { x: 4, y: 18 },
+            { x: 4, y: 17 },
+            { x: 4, y: 16 },
+            { x: 4, y: 15 },
+            { x: 5, y: 20 },
+            { x: 6, y: 20 },
+            { x: 7, y: 20 },
+            { x: 8, y: 20 },
+            
+            // bottom right corner
+            { x: 15, y: 20 },
+            { x: 16, y: 20 },
+            { x: 17, y: 20 },
+            { x: 18, y: 20 },
+            { x: 19, y: 20 },
+            { x: 20, y: 20 },
+            { x: 20, y: 15 },
+            { x: 20, y: 16 },
+            { x: 20, y: 17 },
+            { x: 20, y: 18 },
+            ];
+            break;
+        case("hard"):
+            game.wallCells = [
+            { x: 7, y: 5 },
+            { x: 6, y: 5 },
+            { x: 5, y: 5 },
+            { x: 4, y: 5 },
+            { x: 3, y: 5 } ];
+            break;
+    }
+    
+    ]
+}
+
 function resetGame() {
     $('#reset-button').blur();
     snake = {
@@ -56,7 +126,8 @@ function resetGame() {
         speed: 75,
         score: 0,
         timer: null,
-        currentFoodPosition: null
+        currentFoodPosition: null,
+        wallCells: []
     };
 
     generateFood();

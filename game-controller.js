@@ -13,18 +13,6 @@ function resetSquares() {
     $('.cell').css('background-color', 'white');
 }
 
-function selectDifficulty(selectMenu)
-{
-    if(selectMenu.selectedIndex == 0)
-    {
-        alert("Selected 0 index ");
-    }
-    else if (selectMenu.selectedIndex == 1)
-    {
-        alert("Selected 1 index ");
-    }
-}
-
 $(document).keydown(function(e) {
     switch (e.which) {
         case 37: //left
@@ -63,9 +51,9 @@ $(document).ready(function() {
         $('#gameboard').append(rowhtml);
     }
 
-    startGame(drawBoard, $('#player-name').val());
+    startGame(drawBoard, $('#player-name').val(), $('#difficultySelected').val());
 
     $('#new-game-btn').click(function() {
-        startGame(drawBoard, $('#player-name').val());
+        startGame(drawBoard, $('#player-name').val(), $('#difficultySelected').val());
     });
 });
