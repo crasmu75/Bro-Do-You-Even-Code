@@ -7,7 +7,7 @@
 
 <?php
 
-require_once 'db.php';
+require_once 'hidden/db.php';
 
 try
 {
@@ -163,6 +163,7 @@ catch(PDOException $e)
             <p> 
                 Authors <br/>
                 Camille Rasmussen, Victor Johnson, Dustin Reitstetter, Daniel Cushing
+                <br/> Team: Bro, Do You Even Code? 
             </p>
             </br>
             <p> 

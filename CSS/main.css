@@ -36,14 +36,14 @@ input[type="text"] {
 {
 	float: left;
 	height: 100vh;
-	width: 70%;
+	width: 65%;
 }
 
 .containerRight
 {
 	height: 100vh;
 	float: right;
-	width: 30%;
+	width: 35%;
 }
 
 .newGameBtn {
@@ -60,4 +60,16 @@ input[type="text"] {
 	text-decoration: none;
 }
 
+.styled-select select {
+	font-family: 'Titillium Web', sans-serif;
+	background: #00aa00;
+    width: 90px;
+    padding: 5px;
+    font-size: 18px;
+    line-height: 1;
+    border: 1px solid #005500;
+    border-radius: 3px;
+    height: 34px;
+   -webkit-appearance: none;
+}
 

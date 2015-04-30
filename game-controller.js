@@ -5,11 +5,24 @@ function drawBoard() {
     });
 
     $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).css('background-color', 'red');
+    //$('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).innerHTML = <img src="apple.jpg" alt="Food Image" style="width:20px;height:20px">
     $('#score').html('Score: ' + (snake.eatenFoods || 0));
 }
 
 function resetSquares() {
     $('.cell').css('background-color', 'white');
+}
+
+function changeFoodImage(selectMenu)
+{
+    if(selectMenu.selectedIndex == 0)
+    {
+        alert("Selected 0 index ");
+    }
+    else if (selectMenu.selectedIndex == 1)
+    {
+        alert("Selected 1 index ");
+    }
 }
 
 $(document).keydown(function(e) {
