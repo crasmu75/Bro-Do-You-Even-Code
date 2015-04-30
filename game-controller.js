@@ -5,15 +5,15 @@ function drawBoard() {
     });
 
     $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).css('background-color', 'red');
-    //$('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).innerHTML = <img src="apple.jpg" alt="Food Image" style="width:20px;height:20px">
-    $('#score').html('Score: ' + (snake.eatenFoods || 0));
+    //$('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).html("<img src='Images/orange.png' style='width:12px;height:12px'>");
+    $('#score').html('Score: ' + (game.score || 0));
 }
 
 function resetSquares() {
     $('.cell').css('background-color', 'white');
 }
 
-function changeFoodImage(selectMenu)
+function selectDifficulty(selectMenu)
 {
     if(selectMenu.selectedIndex == 0)
     {
@@ -62,6 +62,8 @@ $(document).ready(function() {
 
         $('#gameboard').append(rowhtml);
     }
+
+    startGame(drawBoard, $('#player-name').val());
 
     $('#new-game-btn').click(function() {
         startGame(drawBoard, $('#player-name').val());
