@@ -1,6 +1,8 @@
 var game;
 var snake;
 
+var foodImageSrc = "Images/apple.gif"; // Default Food Image
+
 // -------------------------------  GAME SPECIFIC -------------------------------
 
 function startGame(drawBoard, playerName, difficulty) {
@@ -17,6 +19,26 @@ function startGame(drawBoard, playerName, difficulty) {
 function endGame() {
     clearTimeout(game.timer);
     dbscore(game.playerName || 'Anonymous', game.score);
+}
+
+function changeFood(index) {
+    
+    switch(index){
+        case 0:
+            foodImageSrc = "Images/apple.gif";
+            break;
+        case 1:
+            foodImageSrc = "Images/orange.png";
+            break;
+        case 2:
+            foodImageSrc = "Images/grapes.png";
+            break;
+        case 3:
+            foodImageSrc = "Images/watermelon.png";
+            break;
+    }
+
+    document.getElementById('foodImage').src = foodImageSrc;
 }
 
 function generateFood() {

@@ -1,10 +1,3 @@
-<!--
-    Author: Daniel Cushing
-    Version: 1.0 
-    Date: 4/17/2015
-    Info: Snake Home Page
--->
-
 <?php
 
 require_once 'hidden/db.php';

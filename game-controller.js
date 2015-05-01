@@ -7,13 +7,19 @@ function drawBoard() {
         $('#' + el.x + '-' + el.y).css('background-color', 'black');
     });
 
-    $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).css('background-color', 'red');
-    //$('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).html("<img src='Images/orange.png' style='width:12px;height:12px'>");
+    $('#' + game.currentFoodPosition.x + '-' + game.currentFoodPosition.y).html("<img src="+ foodImageSrc +" id='foodImage' style='max-height:90%;max-width:100%'>");
+    
     $('#score').html('Score: ' + (game.score || 0));
 }
 
 function resetSquares() {
     $('.cell').css('background-color', 'white');
+    $('.cell').html("");
+}
+
+function selectFood(selectMenu)
+{
+    changeFood(selectMenu.selectedIndex);
 }
 
 $(document).keydown(function(e) {
