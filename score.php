@@ -6,6 +6,7 @@ try
 {
     $name = 0;
     $score = 0;
+    $diff = 0;
     if (isset($_POST['name']))
     {
       $name = $_POST['name'];
@@ -14,6 +15,11 @@ try
     {
       $score = $_POST['score'];
     }
+    if (isset($_POST['diff']))
+    {
+      $diff = $_POST['diff'];
+    }
+    
     
     $DBH = openDBConnection();
 
@@ -21,8 +27,9 @@ try
     {
         $highscore = 0;
         
-        $query = "SELECT * FROM snake.scores order by scores.score desc limit 10;";
+        $query = "SELECT * FROM snake.scores WHERE diff=? order by scores.score desc limit 10;";
         $statement = $DBH->prepare( $query );
+        $statement->bindValue(1, $diff);
         $statement->execute(  );
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         
@@ -35,10 +42,11 @@ try
             }
         }
         
-        $query = "INSERT INTO scores (name, score) VALUES (?,?)";
+        $query = "INSERT INTO scores (name, score, diff) VALUES (?,?,?)";
         $statement = $DBH->prepare( $query );
         $statement->bindValue(1, $name);
         $statement->bindValue(2, $score);
+        $statement->bindValue(3, $diff);
         $statement->execute(  );
 
         echo $highscore;

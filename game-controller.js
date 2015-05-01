@@ -60,7 +60,7 @@ $(document).ready(function() {
         $('#gameboard').append(rowhtml);
     }
 
-    startGame(drawBoard, $('#player-name').val(), $('#difficultySelected').val());
+    //startGame(drawBoard, $('#player-name').val(), $('#difficultySelected').val());
 
     $('#new-game-btn').click(function() {
         startGame(drawBoard, $('#player-name').val(), $('#difficultySelected').val());

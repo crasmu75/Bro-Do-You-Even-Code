@@ -187,14 +187,15 @@ function dbscore(name, score)
     var d2;
     d1 = "&name=" + name;
     d2 = "&score=" + score;
+    d3 = "&diff=" + $('#difficultySelected').val();
 
-    console.log('name: ' + name + ' - score: ' + score);
-    
+    //console.log('name: ' + name + ' - score: ' + score);
+    //alert($('#difficultySelected').val());
     $.ajax(
         {
             type:'POST',
             url: "score.php",
-            data: d1+d2,
+            data: d1+d2+d3,
             dataType: 'html',
             
             success: function(response)
@@ -202,6 +203,10 @@ function dbscore(name, score)
                 if(response == "1")
                 {
                     alert("New high score, your name and score will be displayed in the highscore table on the home page.");
+                }
+                else
+                {
+                    alert("Game over.");
                 }
             }
         });

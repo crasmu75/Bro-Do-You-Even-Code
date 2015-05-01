@@ -8,7 +8,7 @@ try
 
     $return_table = "";
     
-    $query = "SELECT * FROM snake.scores order by scores.score desc limit 10;";
+    $query = "SELECT * FROM snake.scores WHERE diff='easy' order by scores.score desc limit 10;";
     $statement = $DBH->prepare( $query );
     $statement->execute(  );
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -19,6 +19,54 @@ try
             . "<td>" . $row['name'] . "</td>"
             . "<td>" . $row['score'] . "</td>"
             . "</tr>";
+    }
+    
+     $return_table2 = "";
+    
+    $query = "SELECT * FROM snake.scores WHERE diff='medium' order by scores.score desc limit 10;";
+    $statement = $DBH->prepare( $query );
+    $statement->execute(  );
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    
+    foreach($result as $row)
+    {
+        $return_table2 .= "<tr>"
+            . "<td>" . $row['name'] . "</td>"
+            . "<td>" . $row['score'] . "</td>"
+            . "</tr>";
+    }
+    
+     $return_table3 = "";
+    
+    $query = "SELECT * FROM snake.scores WHERE diff='hard' order by scores.score desc limit 10;";
+    $statement = $DBH->prepare( $query );
+    $statement->execute(  );
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    
+    foreach($result as $row)
+    {
+        $return_table3 .= "<tr>"
+            . "<td>" . $row['name'] . "</td>"
+            . "<td>" . $row['score'] . "</td>"
+            . "</tr>";
+    }
+    
+    $query = "SELECT COUNT(*) as c FROM snake.scores";
+    $statement = $DBH->prepare( $query );
+    $statement->execute(  );
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    foreach($result as $row)
+    {
+        $num_games = $row['c'];
+    }
+    
+    $query = "SELECT COUNT(Distinct name) as c FROM snake.scores;";
+    $statement = $DBH->prepare( $query );
+    $statement->execute(  );
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    foreach($result as $row)
+    {
+        $user_count = $row['c'];
     }
 }
 catch(PDOException $e)
@@ -132,9 +180,45 @@ catch(PDOException $e)
             
         </div>
         
-        <!-- High Scores -->
+        <!-- High Scores Hard -->
         <div id="highScoresDiv" class="highScores"> 
-            <h1>High Scores</h1>
+            <h1>High Scores (Hard)</h1>
+
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   <?php echo $return_table3 ?>
+                </tbody>
+            </table>
+
+        </div>
+        
+        <!-- High Scores Medium -->
+        <div id="highScoresMedium" class="highScores"> 
+            <h1>High Scores (Medium)</h1>
+
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   <?php echo $return_table2 ?>
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- High Scores Easy -->
+        <div id="highScoresEasy" class="highScores"> 
+            <h1>High Scores (Easy)</h1>
 
             <table class="table table-striped">
                 <thead>
@@ -149,7 +233,7 @@ catch(PDOException $e)
             </table>
 
         </div>
-        
+
         <!-- About Us -->
         <div id="aboutDiv" class="about"> 
             <h1>About</h1>
@@ -165,6 +249,10 @@ catch(PDOException $e)
                 Web Software Architecture. We chose Snake to demonstrate our familiarity with 
                 html5, javascript, php, and css. 
             </p>
+
+            <br/>
+            <h3> Total Number Of Games </h3>
+            <p> <?php echo $num_games ?> </p>
         </div>
     </body>
 </html>
