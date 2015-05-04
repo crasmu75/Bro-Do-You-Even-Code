@@ -1,5 +1,6 @@
 <?php
 
+// Get database connection info
 require_once 'hidden/db.php';
 
 try
@@ -20,13 +21,15 @@ try
       $diff = $_POST['diff'];
     }
     
-    
+    // Open connection 
     $DBH = openDBConnection();
 
+    // If the player scored insert into database
     if($name !== 0 && $score > 0)
     {
         $highscore = 0;
         
+        // Check to see if they got a highscore 
         $query = "SELECT * FROM snake.scores WHERE diff=? order by scores.score desc limit 10;";
         $statement = $DBH->prepare( $query );
         $statement->bindValue(1, $diff);
@@ -42,6 +45,7 @@ try
             }
         }
         
+        // Insert score into scores table
         $query = "INSERT INTO scores (name, score, diff) VALUES (?,?,?)";
         $statement = $DBH->prepare( $query );
         $statement->bindValue(1, $name);

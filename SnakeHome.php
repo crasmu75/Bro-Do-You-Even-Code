@@ -1,20 +1,27 @@
 <?php
 
+// Get database connection info
 require_once 'hidden/db.php';
 
 try
 {
+    // Open connection
     $DBH = openDBConnection();
 
     $return_table = "";
     
+    // Set query statement. Get easy scores. 
     $query = "SELECT * FROM snake.scores WHERE diff='easy' order by scores.score desc limit 10;";
     $statement = $DBH->prepare( $query );
     $statement->execute(  );
+
+    // Execute
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     
+    // Parse results
     foreach($result as $row)
     {
+        // Build table
         $return_table .= "<tr>"
             . "<td>" . $row['name'] . "</td>"
             . "<td>" . $row['score'] . "</td>"
@@ -23,6 +30,7 @@ try
     
      $return_table2 = "";
     
+    // Get medium scores
     $query = "SELECT * FROM snake.scores WHERE diff='medium' order by scores.score desc limit 10;";
     $statement = $DBH->prepare( $query );
     $statement->execute(  );
@@ -38,6 +46,7 @@ try
     
      $return_table3 = "";
     
+    // Get hard scores
     $query = "SELECT * FROM snake.scores WHERE diff='hard' order by scores.score desc limit 10;";
     $statement = $DBH->prepare( $query );
     $statement->execute(  );
@@ -51,6 +60,7 @@ try
             . "</tr>";
     }
     
+    // Get number of games. 
     $query = "SELECT COUNT(*) as c FROM snake.scores";
     $statement = $DBH->prepare( $query );
     $statement->execute(  );
@@ -58,15 +68,6 @@ try
     foreach($result as $row)
     {
         $num_games = $row['c'];
-    }
-    
-    $query = "SELECT COUNT(Distinct name) as c FROM snake.scores;";
-    $statement = $DBH->prepare( $query );
-    $statement->execute(  );
-    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-    foreach($result as $row)
-    {
-        $user_count = $row['c'];
     }
 }
 catch(PDOException $e)
@@ -85,35 +86,30 @@ catch(PDOException $e)
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
             
-<!--    Link Jquery-->
-<!--    
-        Link Home Screen View Controller (javascript)
-        Link High Scores View Controller (javascript)
--->
-        
-    <!-- Do the following in the view controller -->
     <script type="text/javascript"> 
-        
-    function aboutClicked()
+    
+    // Snake Buttons Clicked Event
+    function navigationButtonClicked(element)
     {
-        location.href = "#aboutDiv";
-    }
-        
-    function highScoresClicked()
-    {
-        location.href = "#highScoresDiv";
-    }
-        
-    function instructionsClicked()
-    {
-        location.href = "#instructionsDiv";
-    }
-        
-    function newGameClicked()
-    {
-        location.href = "SnakeGame.html";
+        if(element.id == "aboutButton")
+        {
+            location.href = "#aboutDiv";
+        }
+        else if(element.id == "highScoresButton")
+        {
+            location.href = "#highScoresDiv";    
+        }
+        else if(element.id == "instructionsButton")
+        {
+            location.href = "#instructionsDiv";
+        }
+        else if(element.id == "newGameButton")
+        {
+            location.href = "SnakeGame.html";    
+        }
     }
 
+    // Snake Buttons Highlight event
     function imgHighlight(element)
     {
         if(element.id == "aboutButton")
@@ -134,6 +130,7 @@ catch(PDOException $e)
         }
     }
 
+    // Snake Buttouns Mouse Out event
     function imgReturnToDefault()
     {
         document.getElementById("homeScreenImage").src = "Images/SnakeHomeDefault.png";
@@ -146,18 +143,19 @@ catch(PDOException $e)
     <body>
         
         <div class="homeScreen">
+            
             <!-- Snake Home Screen Image Div -->
             <div class="homeScreenImage"> 
 
                 <!-- Home Screen Buttons Div -->
                 <div class="homeScreenButtons"> 
-                     <button id="aboutButton" type="button" onclick="aboutClicked()" 
+                     <button id="aboutButton" type="button" onclick="navigationButtonClicked(this)" 
                      onmouseover="imgHighlight(this);" onmouseout="imgReturnToDefault();"></button> 
-                     <button id="highScoresButton" type="button" onclick="highScoresClicked()" 
+                     <button id="highScoresButton" type="button" onclick="navigationButtonClicked(this)" 
                      onmouseover="imgHighlight(this);" onmouseout="imgReturnToDefault();"></button> 
-                     <button id="instructionsButton" type="button" onclick="instructionsClicked()" 
+                     <button id="instructionsButton" type="button" onclick="navigationButtonClicked(this)" 
                      onmouseover="imgHighlight(this);" onmouseout="imgReturnToDefault();"></button> 
-                     <button id="newGameButton" type="button" onclick="newGameClicked()" 
+                     <button id="newGameButton" type="button" onclick="navigationButtonClicked(this)" 
                      onmouseover="imgHighlight(this);" onmouseout="imgReturnToDefault();"></button> 
                 </div>
 

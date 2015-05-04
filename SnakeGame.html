@@ -1,5 +1,7 @@
 <html>
     <head>
+        <script src="SweetAlert/dist/sweetalert.min.js"></script> 
+        <link rel="stylesheet" type="text/css" href="SweetAlert/dist/sweetalert.css">
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src="game-model.js"></script>
         <script src="game-controller.js"></script>
@@ -7,23 +9,25 @@
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:600' rel='stylesheet' type='text/css'>
     </head>
     <body>
+        <!-- Game Board Container -->
         <div class="containerLeft">
             <div class="gameBorder"
                 <table id="gameboard">
                 
                 </table>
             </div>
-            <!-- <a class="newGameBtn" href="#">Start Game</a> -->
         </div>
         
+        <!-- Game buttons container -->
         <div class="containerRight">
-            <input type="text" id="player-name" placeholder="Player Name">
+            <input type="text" id="player-name" placeholder="Player Name"> 
             <h1 id="score"></h1>
             <a id="new-game-btn" class="newGameBtn" href="#">Start Game</a>
             <br/><br/>
             <a id="" class="newGameBtn" href="SnakeHome.php#highScoresDiv">High Scores</a>
             <br/><br/>
 
+            <!-- Difficulty Selection -->
             <div class="styled-select">
                <select id="difficultySelected">
                   <option selected value='easy'>Easy</option>
@@ -34,6 +38,7 @@
 
             <br/>
 
+            <!-- Food Selection -->
             <div class="styled-select">
                <select id="foodSelected" onchange="selectFood(this)">
                   <option value='apple'>Apple</option>

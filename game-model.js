@@ -189,8 +189,6 @@ function dbscore(name, score)
     d2 = "&score=" + score;
     d3 = "&diff=" + $('#difficultySelected').val();
 
-    //console.log('name: ' + name + ' - score: ' + score);
-    //alert($('#difficultySelected').val());
     $.ajax(
         {
             type:'POST',
@@ -202,11 +200,11 @@ function dbscore(name, score)
             {
                 if(response == "1")
                 {
-                    alert("New high score, your name and score will be displayed in the highscore table on the home page.");
+                    swal("New High Score!", "Your name and score will be displayed on the highscore section of the home page."); 
                 }
                 else
                 {
-                    alert("Game over.");
+                    swal("Game over.");
                 }
             }
         });
