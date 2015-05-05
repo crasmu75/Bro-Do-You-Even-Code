@@ -180,55 +180,55 @@ catch(PDOException $e)
         
         <!-- High Scores Hard -->
         <div id="highScoresDiv" class="highScores"> 
-            <h1>High Scores (Hard)</h1>
+            <h1>High Scores</h1>
 
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                   <?php echo $return_table3 ?>
-                </tbody>
-            </table>
 
-        </div>
-        
-        <!-- High Scores Medium -->
-        <div id="highScoresMedium" class="highScores"> 
-            <h1>High Scores (Medium)</h1>
+            <div class="row">
+              <div class="col-xs-4">
+                <table class="table table-striped">
+                    <caption> Hard </caption>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       <?php echo $return_table3 ?>
+                    </tbody>
+                </table>
+              </div>
+              
+              <div class="col-xs-4">
+                <table class="table table-striped">
+                  <caption> Medium </caption>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       <?php echo $return_table2 ?>
+                    </tbody>
+                </table>
+             </div>
 
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                   <?php echo $return_table2 ?>
-                </tbody>
-            </table>
-
-        </div>
-
-        <!-- High Scores Easy -->
-        <div id="highScoresEasy" class="highScores"> 
-            <h1>High Scores (Easy)</h1>
-
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                   <?php echo $return_table ?>
-                </tbody>
-            </table>
+              <div class="col-xs-4">
+                <table class="table table-striped">
+                  <caption> Easy </caption>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       <?php echo $return_table ?>
+                    </tbody>
+                </table>
+              </div>
+            </div>
 
         </div>
 
